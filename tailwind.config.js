@@ -6,6 +6,12 @@ module.exports = {
   ],
   theme: {
     extend: {},
+    extend: {
+      fontFamily: {
+        lato: ['Lato', 'serif'],
+        nunito: ['Nunito', 'sans-serif'],
+      },
+    },
   },
   plugins: [],
 }
