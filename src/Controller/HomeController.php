@@ -2,7 +2,12 @@
 
 namespace App\Controller;
 
+use App\Entity\Marker;
+use App\Form\MarkerFormType;
+use App\Repository\MarkerRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
@@ -12,6 +17,58 @@ final class HomeController extends AbstractController
     public function index(): Response
     {
         return $this->render('home/index.html.twig', [
+        ]);
+    }
+    #[Route('/map', name: 'app_map')]
+    public function map(): Response
+    {
+        return $this->render('map/map.html.twig', [
+        ]);
+    }
+
+    #[Route('/create/marker/{region}/{posX}/{posY}', name: 'app_create_marker')]
+    public function marker(Request $request, EntityManagerInterface $manager, $region, $posX, $posY): Response
+    {
+        $user = $this->getUser()?? null;
+
+        $marker = new Marker();
+        $marker->setCreator($user)
+            ->setRegion($region)
+            ->setPosX($posX)
+            ->setPosY($posY)
+        ;
+
+        $manager->persist($marker);
+
+        $form = $this->createForm(MarkerFormType::class);
+        $form->remove('posX')
+            ->remove('posY')
+            ->remove('region')
+            ->remove('creator');
+        $form->handleRequest($request);
+
+//        Ajouter && $user a la condition quand user sera complétement implémenter
+        if ($form->isSubmitted() && $form->isValid()){
+
+            $marker->setName($form->get('name')->getData())
+                ->setTitle($form->get('name')->getData())
+                ->setComment($form->get('comment')->getData())
+                ;
+
+            if ($file = $form->get('image')->getData()){
+                $entriesPictureDir = __DIR__.'/../../public/upload/img/marker/'
+//                    .$user->getCompany().'/'.$user->getId()
+                ;
+
+                $file->move($entriesPictureDir,$filename = 'marker_'.$region.'_'.$posX.'-'.$posY.$file->guessExtension());
+                $marker->setImage($filename);
+            }
+            $manager->flush();
+            return $this->redirectToRoute('app_map');
+        }
+
+        return $this->render('map/marker.html.twig',[
+            'form' => $form,
         ]);
     }
 }

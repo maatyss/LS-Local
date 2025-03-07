@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+
+    <main class="flex flex-col gap-12 max-w-[1700px] mx-auto p-12">
+        <h2 class="text-4xl font-medium text-center">Carte Interactive de LS</h2>
+        <div class="flex flex-col items-center gap-4">
+            <div class="flex items-center gap-4">
+                <p class="text-2xl">Explications</p>
+                <svg id="explanationShow" class="w-4 h-4 hover:cursor-pointer" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                    <path id="explanationShowPath" fill="lavender" d="M169.4 470.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 370.8 224 64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 306.7L54.6 265.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"></path>
+                </svg>
+            </div>
+
+            <p id="explanations" class="flex flex-col gap-2 hidden">
+                <span>Tu trouvera la carte en 2 partie, une partie "nord" et une partie "sud".</span>
+                <span>Passe ta souries sur les Marker pour afficher leurs informations.</span>
+                <span>Pour ajouter un Marker clique sur le bouton et appuye ensuite à l'endroit désiré sur la carte</span>
+                <span>Suis les instructions du formulaire pour fnir la création du Marker</span>
+            </p>
+        </div>
+
+        <div class="flex justify-around gap-12">
+            <button id="addMarker" class="w-fit px-4 py-2 bg-electric-blue rounded-lg hover:brightness-[120%]">
+                Ajouter un Marker
+            </button>
+            <div class="flex items-center gap-8">
+                <p id="addMarkerInstruction" class="text-2xl font-medium invisible">Clique sur la carte pour ajouter un marker</p>
+                <button id="cancelAddMarker" class="w-fit px-4 py-2 bg-neon-red rounded-lg hover:brightness-[120%] invisible">
+                    Annuler
+                </button>
+            </div>
+
+
+        </div>
+
+
+        <div>
+            <img class="map" src="{{ asset('base/img/map_ls_nord.png') }}" data-region="north" alt="">
+        </div>
+        
+        <div>
+            <img class="map" src="{{ asset('base/img/map_ls_sud.png') }}" data-region="south" alt="">
+        </div>
+
+
+    </main>
+{% endblock %}

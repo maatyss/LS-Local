@@ -1,0 +1,58 @@
+{% use 'tailwind_2_layout.html.twig' %}
+
+{% block form_label %}
+    {% set label_class = label_class|default('font-semibold') %}
+    {{ parent() }}
+{% endblock %}
+
+{% block widget_attributes %}
+    {% set widget_class = widget_class|default('w-full border rounded-lg py-3 px-4 focus:outline-none focus:shadow-outline text-black') %}
+    {{ parent() }}
+{% endblock %}
+
+{%- block checkbox_row -%}
+    {%- set row_attr = row_attr|merge({ class: row_attr.class|default(row_class|default('mb-6')) }) -%}
+    {%- set widget_attr = {} -%}
+    {%- if help is not empty -%}
+        {%- set widget_attr = {attr: {'aria-describedby': id ~"_help"}} -%}
+    {%- endif -%}
+    <div{% with {attr: row_attr} %}{{ block('attributes') }}{% endwith %}>
+        <div class="flex flex-row items-center gap-1">
+            {{- form_widget(form, widget_attr) -}}
+            {{- form_label(form) -}}
+        </div>
+        {{- form_help(form) -}}
+        {{- form_errors(form) -}}
+    </div>
+{%- endblock checkbox_row -%}
+
+{%- block form_errors -%}
+    {%- if errors|length > 0 -%}
+        <ul class="relative">
+            {%- for error in errors -%}
+                <li class="lg:absolute right-0 top-0 bg-red-100 border border-red-400 text-red-700 px-4 py-1 my-2 lg:mr-2 font-medium rounded-lg {{ error_item_class|default('')
+                }}">{{
+                    error
+                    .message }}</li>
+            {%- endfor -%}
+        </ul>
+    {%- endif -%}
+{%- endblock form_errors -%}
+
+{% block file_widget -%}
+    <div class="w-full">
+        {%- set attr = attr|merge({ class: attr.class|default('hidden'), onchange: attr.onchange|default('showPreview(event, "'~id~'")')  }) -%}
+        <label for="{{ id }}" class="hover:cursor-pointer w-full border rounded-lg py-3 px-4 text-stroke self-start flex flex-row justify-between items-center" aria-disabled="true">
+            /Upload
+            <svg class="w-12 h-12" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
+                <path d="M144 480C64.5 480 0 415.5 0 336c0-62.8 40.2-116.2 96.2-135.9c-.1-2.7-.2-5.4-.2-8.1c0-88.4 71.6-160 160-160c59.3 0 111 32.2 138.7 80.2C409.9 102 428.3 96 448 96c53 0 96 43 96 96c0 12.2-2.3 23.8-6.4 34.6C596 238.4 640 290.1 640 352c0 70.7-57.3 128-128 128l-368 0zm79-217c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l39-39L296 392c0 13.3 10.7 24 24 24s24-10.7 24-24l0-134.1 39 39c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-80-80c-9.4-9.4-24.6-9.4-33.9 0l-80 80z"></path>
+            </svg>
+        </label>
+        {{- block('form_widget') -}}
+
+        <div class="preview w-full mt-6">
+            <img class="w-30 h-auto" id="{{ id }}-preview" src="" alt="">
+            <p class="text-left" id="{{ id }}-name"></p>
+        </div>
+    </div>
+{%- endblock file_widget %}

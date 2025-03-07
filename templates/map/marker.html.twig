@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+
+    <main class="flex flex-col gap-12 max-w-[1700px] mx-auto p-12">
+
+        {{ form_start(form, {attr: {class: 'w-11/12 md:w-3/5 mx-auto px-5 py-10 mt-10 bg-silver rounded-3xl text-black', imgClass: 'w-50 h-auto'}}) }}
+
+        <h2 class="text-4xl font-medium text-center">Finalisation de la création du marker</h2>
+
+        {{ form_widget(form) }}
+
+        <input formnovalidate type="submit" value="Valider la création"
+               class="py-2 px-4 w-fit text-center text-lavender text-lg bg-electric-blue
+           hover:cursor-pointer hover:brightness-[80%]">
+
+    </main>
+{% endblock %}
