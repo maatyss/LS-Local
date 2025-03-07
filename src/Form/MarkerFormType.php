@@ -26,7 +26,7 @@ class MarkerFormType extends AbstractType
             ->add('title', TextType::class, [
                 'label' => 'Titre',
                 'attr' => [
-                    'placeholder' => 'La maison de Tyler'
+                    'placeholder' => 'La maison de Juan'
                 ]
             ])
             ->add('region')
