@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+
+<main class="flex flex-col gap-12 max-w-[1700px] mx-auto p-12">
+
+    <img class="absolute top-[176px] left-0 w-full -z-10" src="{{ asset('base/img/ls_night.png') }}" alt="">
+
+    <div class="flex flex-col gap-12 bg-silver/50 rounded-2xl p-8">
+        <h2 class="text-4xl font-medium text-center">LS Local - Les plans, les infos, tout ce qu'il te faut, ici.</h2>
+        <p class="flex flex-col text-2xl font-medium gap-4">
+            <span>
+                Alors, t'es nouveau ici ? Bienvenue à Los Santos !
+            </span>
+
+            <span>
+                Si tu veux survivre dans cette jungle, t'as besoin d'infos. Et c'est là que LS Local entre en jeu !
+            </span>
+
+            <span>
+                Ici, on cartographie les lieux importants, les deals, les planques...Tout ce qui peut t'aider à te faire une place.Tu peux ajouter tes propres points, tes infos, tes photos...Tout ce qui peut servir.
+            </span>
+
+            <span>
+                <span>
+                    La carte, ton outil : Un coup d'œil, et t'as une vision claire de la ville. Plus besoin de te perdre dans les ruelles.
+                </span>
+
+                <span>
+                    Les infos, c'est le pouvoir : Chaque point, c'est une piste, un contact, un truc à savoir. Passe ta souris, et t'as toutes les infos.
+                </span>
+
+                <span>
+                    Partage tes découvertes : Si t'as trouvé un truc intéressant, marque-le sur la carte.
+                </span>
+            </span>
+
+            <span>
+                LS Local, c'est ton allié dans les rues de Los Santos. Alors, qu'est-ce que tu attends ?
+            </span>
+        </p>
+
+    </div>
+
+    <div class="flex justify-around">
+        <a href="">
+            <p class="text-2xl bg-neon-purple p-2 w-fit rounded-lg hover:brightness-[80%]">Documentation</p>
+        </a>
+
+        <a href="">
+            <p class="text-2xl bg-electric-blue p-2 w-fit rounded-lg hover:brightness-[80%]">Connecte toi !</p>
+        </a>
+    </div>
+
+
+</main>
+{% endblock %}
