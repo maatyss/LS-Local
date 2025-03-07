@@ -1,9 +1,21 @@
-body {
-    background-color: skyblue;
-}
-
-
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body{
+    position: relative;
+    background-color: #000;
+    /* Hiding scrollbar */
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+
+    font-family: Nunita, sans-serif;
+}
+/* Hide scrollbar for Chrome, Safari and Opera */
+body::-webkit-scrollbar {
+    display: none;
+}
+
+h1,h2,h3,h4,h5,h6{
+    font-family: Lato, sans-serif;
+}
