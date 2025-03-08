@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Marker;
 use App\Form\MarkerFormType;
 use App\Repository\MarkerRepository;
 use Doctrine\ORM\EntityManagerInterface;
