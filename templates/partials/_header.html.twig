@@ -5,37 +5,46 @@
     </a>
     <h1 class="text-neon-orange text-6xl font-bold">LS Marker</h1>
 
-    <div class="flex gap-8 items-center">
+    <nav class="flex gap-8 items-center">
 
         {% if app.user %}
-            <a href="{{ path('app_map') }}" title="Carte">
-                <svg class="h-12 w-12" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                    <path fill="lavender" d="M384 476.1L192 421.2l0-385.3L384 90.8l0 385.3zm32-1.2l0-386.5L543.1 37.5c15.8-6.3 32.9 5.3 32.9 22.3l0 334.8c0 9.8-6 18.6-15.1 22.3L416 474.8zM15.1 95.1L160 37.2l0 386.5L32.9 474.5C17.1 480.8 0 469.2 0 452.2L0 117.4c0-9.8 6-18.6 15.1-22.3z"></path>
-                </svg>
-            </a>
-            <div class="flex flex-col gap-8">
-                {% if 'ROLE_ADMIN' in app.user.roles %}
-                    <a href="{{ path('admin') }}" title="dashboard admin">
-                        <svg class="h-8 w-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                            <path fill="#9C27B0" d="M0 96C0 60.7 28.7 32 64 32l384 0c35.3 0 64 28.7 64 64l0 320c0 35.3-28.7 64-64 64L64 480c-35.3 0-64-28.7-64-64L0 96zm64 64l0 256 160 0 0-256L64 160zm384 0l-160 0 0 256 160 0 0-256z"></path>
-                        </svg>
-                    </a>
-                {% endif %}
-                <a href="{{ path('app_logout') }}" title="déconnexion">
-                    <svg class="h-8 w-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                        <path fill="red" d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"></path>
+            <div class="p-2 bg-silver/75 rounded-xl">
+                <a href="{{ path('app_map') }}" title="Carte">
+                    <svg class="h-12 w-12" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                        <path fill="lavender" d="M384 476.1L192 421.2l0-385.3L384 90.8l0 385.3zm32-1.2l0-386.5L543.1 37.5c15.8-6.3 32.9 5.3 32.9 22.3l0 334.8c0 9.8-6 18.6-15.1 22.3L416 474.8zM15.1 95.1L160 37.2l0 386.5L32.9 474.5C17.1 480.8 0 469.2 0 452.2L0 117.4c0-9.8 6-18.6 15.1-22.3z"></path>
                     </svg>
                 </a>
             </div>
 
+            <div class="flex flex-col gap-8">
+                {% if 'ROLE_ADMIN' in app.user.roles %}
+                    <div class="p-2 bg-silver/75 rounded-xl">
+                        <a href="{{ path('admin') }}" title="dashboard admin">
+                            <svg class="h-8 w-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                <path fill="#9C27B0" d="M0 96C0 60.7 28.7 32 64 32l384 0c35.3 0 64 28.7 64 64l0 320c0 35.3-28.7 64-64 64L64 480c-35.3 0-64-28.7-64-64L0 96zm64 64l0 256 160 0 0-256L64 160zm384 0l-160 0 0 256 160 0 0-256z"></path>
+                            </svg>
+                        </a>
+                    </div>
+                {% endif %}
+                <div class="p-2 bg-silver/75 rounded-xl">
+                    <a href="{{ path('app_logout') }}" title="déconnexion">
+                        <svg class="h-8 w-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                            <path fill="red" d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
         {% else %}
-            <a href="{{ path('app_login') }}" title="Connexion">
-                <svg class="h-12 w-12" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                    <path fill="#0D47A1" d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512l388.6 0c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304l-91.4 0z"></path>
-                </svg>
-            </a>
+            <div class="p-2 bg-silver/75 rounded-xl">
+                <a href="{{ path('app_login') }}" title="Connexion">
+                    <svg class="h-12 w-12" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                        <path fill="#0D47A1" d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512l388.6 0c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304l-91.4 0z"></path>
+                    </svg>
+                </a>
+            </div>
         {% endif %}
 
-    </div>
+    </nav>
 
 </header>
