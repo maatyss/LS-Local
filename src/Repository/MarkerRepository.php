@@ -31,13 +31,14 @@ class MarkerRepository extends ServiceEntityRepository
     //        ;
     //    }
 
-    //    public function findOneBySomeField($value): ?Marker
-    //    {
-    //        return $this->createQueryBuilder('m')
-    //            ->andWhere('m.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
+        public function getRegionMarkers($value)
+        {
+            $query = $this->createQueryBuilder('m')
+                ->andWhere('m.region = :val')
+                ->setParameter('val', $value)
+                ->getQuery()
+            ;
+
+            return$query->getResult();
+        }
 }

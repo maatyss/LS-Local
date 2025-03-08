@@ -20,9 +20,14 @@ final class HomeController extends AbstractController
         ]);
     }
     #[Route('/map', name: 'app_map')]
-    public function map(): Response
+    public function map(MarkerRepository $markerRepository): Response
     {
+        $markerNorth = $markerRepository->getRegionMarkers('north');
+        $markerSouth = $markerRepository->getRegionMarkers('south');
+
         return $this->render('map/map.html.twig', [
+            'markersNorth' => $markerNorth,
+            'markersSouth' => $markerSouth,
         ]);
     }
 
@@ -51,13 +56,12 @@ final class HomeController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()){
 
             $marker->setName($form->get('name')->getData())
-                ->setTitle($form->get('name')->getData())
+                ->setTitle($form->get('title')->getData())
                 ->setComment($form->get('comment')->getData())
                 ;
 
             if ($file = $form->get('image')->getData()){
-                $entriesPictureDir = __DIR__.'/../../public/upload/img/marker/'
-//                    .$user->getCompany().'/'.$user->getId()
+                $entriesPictureDir = __DIR__.'/../../public/upload/img/marker/'.$user->getId()
                 ;
 
                 $file->move($entriesPictureDir,$filename = 'marker_'.$region.'_'.$posX.'-'.$posY.$file->guessExtension());

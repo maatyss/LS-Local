@@ -36,12 +36,61 @@
         </div>
 
 
-        <div>
+        <div class="relative">
             <img class="map" src="{{ asset('base/img/map_ls_nord.png') }}" data-region="north" alt="">
+            <ul class="markersList absolute w-full h-full top-0 left-0 invisible">
+                {% for marker in markersNorth %}
+                    <li class="marker absolute flex flex-col gap-4 h-fit w-fit"
+                        data-posx="{{ marker.posX }}" data-posy="{{ marker.posY }}"
+                        data-name="{{ marker.name }} " data-id="{{ marker.id }}">
+                        <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+                            <path fill="#FF4081" d="M16 144a144 144 0 1 1 288 0A144 144 0 1 1 16 144zM160 80c8.8 0 16-7.2 16-16s-7.2-16-16-16c-53 0-96 43-96 96c0 8.8 7.2 16 16 16s16-7.2 16-16c0-35.3 28.7-64 64-64zM128 480l0-162.9c10.4 1.9 21.1 2.9 32 2.9s21.6-1 32-2.9L192 480c0 17.7-14.3 32-32 32s-32-14.3-32-32z"></path>
+                        </svg>
+                        <div id="cardMarker_{{ marker.id }}" class="hidden flex flex-col gap-4 bg-grey p-4 rounded-lg">
+                            <div class="flex flex-col">
+                                <p class="text-xl font-medium">{{ marker.title }}</p>
+                                <p class="text-xs">Type : {{ marker.name }}</p>
+                            </div>
+
+                            <p class="w-80 pl-4">{{ marker.comment }}</p>
+
+                            {% if marker.image %}
+                                <img class="w-80 h-auto" src="{{ asset('upload/img/marker/' ~ app.user.id ~ '/' ~ marker.image) }}" alt="Image marker_{{ marker.id }}">
+                            {% endif %}
+                            <p class="text-xs">Marker posé par : {{ marker.creator.name }}</p>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+
         </div>
         
-        <div>
+        <div class="relative">
             <img class="map" src="{{ asset('base/img/map_ls_sud.png') }}" data-region="south" alt="">
+            <ul class="markersList absolute w-full h-full top-0 left-0 invisible">
+                {% for marker in markersSouth %}
+                    <li class="marker absolute flex flex-col gap-4 h-fit w-fit"
+                        data-posx="{{ marker.posX }}" data-posy="{{ marker.posY }}"
+                        data-name="{{ marker.name }} " data-id="{{ marker.id }}">
+                        <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+                            <path fill="#FF4081" d="M16 144a144 144 0 1 1 288 0A144 144 0 1 1 16 144zM160 80c8.8 0 16-7.2 16-16s-7.2-16-16-16c-53 0-96 43-96 96c0 8.8 7.2 16 16 16s16-7.2 16-16c0-35.3 28.7-64 64-64zM128 480l0-162.9c10.4 1.9 21.1 2.9 32 2.9s21.6-1 32-2.9L192 480c0 17.7-14.3 32-32 32s-32-14.3-32-32z"></path>
+                        </svg>
+                        <div id="cardMarker_{{ marker.id }}" class="hidden flex flex-col gap-4 bg-grey p-4 rounded-lg">
+                            <div class="flex flex-col">
+                                <p class="text-xl font-medium">{{ marker.title }}</p>
+                                <p class="text-xs">Type : {{ marker.name }}</p>
+                            </div>
+
+                            <p class="w-80 pl-4">{{ marker.comment }}</p>
+
+                            {% if marker.image %}
+                                <img class="w-80 h-auto" src="{{ asset('upload/img/marker/' ~ app.user.id ~ '/' ~ marker.image) }}" alt="Image marker_{{ marker.id }}">
+                            {% endif %}
+                            <p class="text-xs">Marker posé par : {{ marker.creator.name }}</p>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
         </div>
 
 

@@ -2,15 +2,13 @@ let maps = document.querySelectorAll('.map')
 let addMarker = document.querySelector('#addMarker')
 let cancelAddMarker = document.querySelector('#cancelAddMarker')
 let addMarkerInstruction = document.querySelector('#addMarkerInstruction')
+let markersLists = document.querySelectorAll('.markersList')
 
 function choosecoordinateForMarker(e) {
   
   let posX = Math.trunc((e.offsetX/e.target.width)*Math.pow(10, 7))/Math.pow(10, 7)
   let posY = Math.trunc((e.offsetY/e.target.height)*Math.pow(10, 7))/Math.pow(10, 7)
   let region = e.target.dataset.region
-  console.log(region)
-  console.log(posX)
-  console.log(posY)
   
   window.location.assign('/create/marker/' + region + '/' + posX + '/' + posY)
 }
@@ -20,6 +18,13 @@ if(addMarker && cancelAddMarker && addMarkerInstruction) {
     addMarker.classList.toggle('invisible')
     cancelAddMarker.classList.toggle('invisible')
     addMarkerInstruction.classList.toggle('invisible')
+    
+    if(markersLists) {
+      markersLists.forEach((markerList) => {
+        markerList.classList.toggle('hidden')
+      })
+    }
+    
     if(maps) {
       maps.forEach((map) => {
         map.classList.toggle('hover:cursor-pointer')
@@ -33,6 +38,13 @@ if(addMarker && cancelAddMarker && addMarkerInstruction) {
     addMarker.classList.toggle('invisible')
     cancelAddMarker.classList.toggle('invisible')
     addMarkerInstruction.classList.toggle('invisible')
+    
+    if(markersLists) {
+      markersLists.forEach((markerList) => {
+        markerList.classList.toggle('hidden')
+      })
+    }
+    
     if(maps) {
       maps.forEach((map) => {
         map.classList.toggle('hover:cursor-pointer')
@@ -59,6 +71,35 @@ if(explanationShow && explanations && explanationShowPath) {
   })
   
 }
+
+let markers = document.querySelectorAll('.marker')
+
+if (markers) {
+  markers.forEach((marker) => {
+    let posX = Math.round(marker.parentElement.offsetWidth * marker.dataset.posx) - (marker.querySelector('svg').getBoundingClientRect().width/2)
+    let posY = Math.round(marker.parentElement.offsetHeight * marker.dataset.posy) - (marker.querySelector('svg').getBoundingClientRect().height)
+
+    marker.style.top = posY + 'px'
+    marker.style.left = posX + 'px'
+    
+    marker.addEventListener('mouseover', () => {
+      let cardMarker = marker.querySelector('#cardMarker_'+marker.dataset.id)
+      cardMarker.classList.remove('hidden')
+    })
+    marker.addEventListener('mouseleave', () => {
+      let cardMarker = marker.querySelector('#cardMarker_'+marker.dataset.id)
+      cardMarker.classList.add('hidden')
+    })
+  })
+  
+  if(markersLists) {
+    markersLists.forEach((markerList) => {
+      markerList.classList.toggle('invisible')
+    })
+  }
+}
+
+
 
 
 function showPreview(event, id){
