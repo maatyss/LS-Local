@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block body %}
+    <form class="mt-10 md:w-2/5 mx-auto bg-bg py-10 px-10 rounded-2xl flex flex-col" method="post">
+
+        <h1 class="text-3xl font-bold mb-6 uppercase">Se Connecter</h1>
+
+        {% if app.user %}
+            <div class="mb-3 flex flex-col items-center">
+                <p>Vous êtes connecté en tant que : {{ app.user.name | capitalize }}</p>
+                <a class="w-fit px-2 py-1 mt-3 bg-neon-purple hover:brightness-[120%] rounded-2xl text-sm font-medium"
+                   href="{{ path('app_logout') }}">Déconnexion</a>
+            </div>
+        {% endif %}
+
+        {% if error %}
+            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 mb-4 font-medium rounded-lg" role="alert">
+                {{ error.messageKey|trans(error.messageData, 'security') }}
+            </div>
+        {% endif %}
+
+        <label for="username" class="block mb-2 font-semibold">Username</label>
+        <input type="text" value="" name="username" id="username" placeholder="discord" class="w-full border rounded-lg py-3 px-4 mb-6 focus:outline-none text-black" autocomplete="username" autofocus>
+
+        <label for="password" class="block mb-2 font-semibold">Password</label>
+        <input type="password" name="password" id="password" class="w-full border rounded-lg py-3 px-4 mb-6 focus:outline-none text-black" autocomplete="current-password">
+
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+        <button formnovalidate class="w-fit text-light bg-electric-blue hover:bg-brightness-[120%] py-3 px-6 rounded-lg" type="submit">
+            Se connecter
+        </button>
+
+                <a class="w-fit text-light bg-neon-purple hover:bg-brightness-[120%] text-sm font-bold py-1 px-2 mt-5 rounded-lg" href="{{ path('app_register')
+                }}">S'inscrire</a>
+
+    </form>
+{% endblock %}
