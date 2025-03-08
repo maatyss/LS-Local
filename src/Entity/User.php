@@ -143,12 +143,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getRank(): ?string
+    public function getGrade(): ?string
     {
         return $this->grade;
     }
 
-    public function setRank(?string $grade): static
+    public function setGrade(?string $grade): static
     {
         $this->grade = $grade;
 
