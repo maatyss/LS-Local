@@ -13,7 +13,7 @@
         <p class="w-80 pl-4">{{ marker.comment }}</p>
 
         {% if marker.image %}
-            <img class="w-80 h-auto" src="{{ asset('upload/img/marker/' ~ app.user.id ~ '/' ~ marker.image) }}" alt="Image marker_{{ marker.id }}">
+            <img class="w-80 h-auto" src="{{ marker.image }}" alt="Image marker_{{ marker.id }}">
         {% endif %}
         <p class="text-xs">Marker posé par : {{ marker.creator.name }}</p>
     </div>

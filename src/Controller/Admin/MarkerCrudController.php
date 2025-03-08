@@ -24,18 +24,14 @@ class MarkerCrudController extends AbstractCrudController
             TextField::new('name'),
             TextField::new('title'),
             TextareaField::new('comment'),
-            TextField::new('image'),
-            ImageField::new('picture')
-                ->setBasePath('upload/img/marker')
-                ->setUploadDir('public/upload/projects'),
-            TextareaField::new('region'),
-            TextareaField::new('posX'),
-            TextareaField::new('posY'),
             AssociationField::new('creator')
                 ->formatValue(function ($value, $entity) {
                     return $entity->getCreator()->getName();
-                }),
-
+                })->hideOnForm(),
+            ImageField::new('image')->hideOnForm(),
+            TextareaField::new('region')->hideOnForm(),
+            TextareaField::new('posX')->hideOnForm(),
+            TextareaField::new('posY')->hideOnForm(),
         ];
     }
 

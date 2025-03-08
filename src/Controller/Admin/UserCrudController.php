@@ -16,9 +16,14 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvents;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class UserCrudController extends AbstractCrudController
 {
+    public function __construct(
+        public UserPasswordHasherInterface $userPasswordHasher
+    ) {}
+
     public static function getEntityFqcn(): string
     {
         return User::class;

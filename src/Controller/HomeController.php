@@ -65,11 +65,11 @@ final class HomeController extends AbstractController
                 ;
 
             if ($file = $form->get('image')->getData()){
-                $entriesPictureDir = __DIR__.'/../../public/upload/img/marker/'.$user->getId()
-                ;
+                $imageLink = '/upload/img/marker/'.$user->getId();
+                $entriesPictureDir = __DIR__.'/../../public/upload/img/marker/'.$user->getId();
 
-                $file->move($entriesPictureDir,$filename = 'marker_'.$region.'_'.$posX.'-'.$posY.$file->guessExtension());
-                $marker->setImage($filename);
+                $file->move($entriesPictureDir,$filename = 'marker_'.$region.'_'.$posX.'-'.$posY.'.'.$file->guessExtension());
+                $marker->setImage($imageLink.'/'.$filename);
             }
             $manager->flush();
             return $this->redirectToRoute('app_map');
