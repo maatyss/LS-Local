@@ -3,59 +3,61 @@
 {% block body %}
 
 
-<main class="flex flex-col gap-12 max-w-[1700px] mx-auto p-12">
+<main class="flex flex-col gap-28 max-w-[1700px] mx-auto p-12">
 
     <img class="absolute top-[176px] left-0 w-full -z-10" src="{{ asset('base/img/ls_night.png') }}" alt="">
 
-    <div class="flex flex-col gap-12 bg-silver/50 rounded-2xl p-8">
-        <h2 class="text-4xl font-medium text-center">LS Local - Les plans, les infos, tout ce qu'il te faut, ici.</h2>
-        <p class="flex flex-col text-2xl font-medium gap-4">
+    <div class="flex flex-col gap-12 bg-silver/75 rounded-2xl p-8">
+        <h2 class="text-4xl font-semibold text-center">LS Marker - Votre Boussole Urbaine.</h2>
+        <p class="flex flex-col text-black text-2xl font-semibold gap-8">
             <span>
-                Alors, t'es nouveau ici ? Bienvenue à Los Santos !
+                Bienvenue à Los Santos ! Ici, LS Marker devient votre <span class="text-neon-purple">QG numérique</span>, votre <span class="text-neon-purple">boussole urbaine</span> dans cette jungle de béton.
             </span>
 
             <span>
-                Si tu veux survivre dans cette jungle, t'as besoin d'infos. Et c'est là que LS Local entre en jeu !
+                Besoin de <span class="text-neon-purple">planifier</span> vos opérations ? De <span class="text-neon-purple">partager</span> des infos cruciales avec votre groupe ? LS Marker est là pour ça.
             </span>
 
             <span>
-                Ici, on cartographie les lieux importants, les deals, les planques...Tout ce qui peut t'aider à te faire une place.Tu peux ajouter tes propres points, tes infos, tes photos...Tout ce qui peut servir.
+                Marquez vos planques, vos contacts, vos opérations. Tout vos <span class="text-neon-purple">lieux importants</span> seront cartographiés ici.
             </span>
 
-            <span>
+            <span class="flex flex-col gap-2 pl-4">
                 <span>
-                    La carte, ton outil : Un coup d'œil, et t'as une vision claire de la ville. Plus besoin de te perdre dans les ruelles.
+                    <span class="text-electric-blue font-semibold">Votre carte, votre terrain de jeu :</span> Un coup d'œil, et vous avez une <span class="text-neon-purple">vision claire</span> de votre territoire. Plus besoin de vous perdre, tout est sous contrôle.
                 </span>
 
                 <span>
-                    Les infos, c'est le pouvoir : Chaque point, c'est une piste, un contact, un truc à savoir. Passe ta souris, et t'as toutes les infos.
+                    <span class="text-electric-blue font-semibold">Le partage, votre force :</span> Partagez vos découvertes en <span class="text-neon-purple">temps réel</span>, collaborez sur les plans, et prenez le contrôle de la ville ensemble.
                 </span>
 
                 <span>
-                    Partage tes découvertes : Si t'as trouvé un truc intéressant, marque-le sur la carte.
+                    <span class="text-electric-blue font-semibold">Vos infos, votre avantage :</span> Chaque point marqué, c'est une piste, un contact, une opération. Tout ce qui compte pour VOUS est ici.
                 </span>
-            </span>
-
-            <span>
-                LS Local, c'est ton allié dans les rues de Los Santos. Alors, qu'est-ce que tu attends ?
             </span>
         </p>
+        <p class="text-center text-3xl font-semibold text-black">LS Marker, c'est votre allié pour dominer Los Santos. Alors, qu'attendez-vous pour tracer votre chemin ?</p>
 
     </div>
 
-    <div class="flex justify-around">
+    <div class="flex justify-around text-2xl font-semibold">
         <a href="">
-            <p class="text-2xl bg-neon-purple p-2 w-fit rounded-lg hover:brightness-[80%]">Documentation</p>
+            <p class="bg-neon-purple p-4 w-fit rounded-lg hover:brightness-[80%]">Documentation</p>
         </a>
 
         {% if app.user %}
             <a href="{{ path('app_login') }}">
-                <p class="text-2xl bg-neon-orange p-2 w-fit text-black font-semibold rounded-lg hover:brightness-[80%]">A la carte !</p>
+                <p class="bg-neon-orange p-4 w-fit text-black font-semibold rounded-lg hover:brightness-[80%]">A la carte !</p>
             </a>
         {% else %}
-            <a href="{{ path('app_login') }}">
-                <p class="text-2xl bg-electric-blue p-2 w-fit rounded-lg hover:brightness-[80%]">Connecte toi !</p>
-            </a>
+         <div class="flex gap-8">
+             <a href="{{ path('app_register') }}">
+                 <p class="bg-electric-blue p-4 w-fit rounded-lg hover:brightness-[80%]">Inscris toi !</p>
+             </a>
+             <a href="{{ path('app_login') }}">
+                 <p class="bg-neon-orange text-black p-4 w-fit rounded-lg hover:brightness-[80%]">Connecte toi !</p>
+             </a>
+         </div>
         {% endif %}
 
     </div>
