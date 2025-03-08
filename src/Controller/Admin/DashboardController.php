@@ -21,7 +21,7 @@ class DashboardController extends AbstractDashboardController
     ){
     }
 
-    #[Route('/', name: 'admin_landing')]
+    #[Route('/admin', name: 'admin_landing')]
     public function index(): Response
     {
 
