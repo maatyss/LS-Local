@@ -28,9 +28,9 @@ class UserCrudController extends AbstractCrudController
     {
         return [
             IdField::new('id')->hideOnForm(),
-            TextField::new('name')
+            TextField::new('name'),
+            TextField::new('username')
                 ->setLabel('Discord'),
-            TextField::new('username'),
             $password = TextField::new('password')
                 ->setFormType(RepeatedType::class)
                 ->setFormTypeOptions([

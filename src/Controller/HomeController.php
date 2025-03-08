@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 final class HomeController extends AbstractController
 {
@@ -19,6 +20,8 @@ final class HomeController extends AbstractController
         return $this->render('home/index.html.twig', [
         ]);
     }
+
+    #[IsGranted('ROLE_GROUPE_CJGN')]
     #[Route('/map', name: 'app_map')]
     public function map(MarkerRepository $markerRepository): Response
     {
@@ -31,6 +34,7 @@ final class HomeController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_GROUPE_CJGN')]
     #[Route('/create/marker/{region}/{posX}/{posY}', name: 'app_create_marker')]
     public function marker(Request $request, EntityManagerInterface $manager, $region, $posX, $posY): Response
     {
