@@ -35,13 +35,14 @@ class DashboardController extends AbstractDashboardController
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle('LS Local | Back-Office');
+            ->setTitle('LS Marker | Back-Office');
     }
 
     public function configureMenuItems(): iterable
     {
+        yield MenuItem::linkToUrl('LS Marker | Accueil', 'fa fa-globe', $this->getParameter('app_url'));
+
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
-//        yield MenuItem::linkToUrl('LS Marker', 'fa fa-globe', $this->getParameter('app_url'));
 
 
         yield  MenuItem::linkToCrud('Users', 'fa fa-users', User::class)
