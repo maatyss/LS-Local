@@ -48,9 +48,16 @@
             <p class="text-2xl bg-neon-purple p-2 w-fit rounded-lg hover:brightness-[80%]">Documentation</p>
         </a>
 
-        <a href="{{ path('app_login') }}">
-            <p class="text-2xl bg-electric-blue p-2 w-fit rounded-lg hover:brightness-[80%]">Connecte toi !</p>
-        </a>
+        {% if app.user %}
+            <a href="{{ path('app_login') }}">
+                <p class="text-2xl bg-neon-orange p-2 w-fit text-black font-semibold rounded-lg hover:brightness-[80%]">A la carte !</p>
+            </a>
+        {% else %}
+            <a href="{{ path('app_login') }}">
+                <p class="text-2xl bg-electric-blue p-2 w-fit rounded-lg hover:brightness-[80%]">Connecte toi !</p>
+            </a>
+        {% endif %}
+
     </div>
 
 
