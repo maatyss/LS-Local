@@ -3,6 +3,34 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}LS Marker{% endblock %}</title>
+
+        {% block meta %}
+            <meta name="description" content="{{ app.request.server.get('META_GEN_DESCRIPTION') }}">
+            <meta name="author" content="{{ app.request.server.get('META_GEN_AUTHOR') }}">
+        {% endblock %}
+
+        {% block canonical %}
+            <link rel="canonical" href="{{ app.request.server.get('APP_URL') }}">
+        {% endblock %}
+
+
+        {% block fbmeta %}
+            <!-- Facebook meta tags -->
+            <meta property="og:type" content="website">
+            <meta property="og:site_name" content="{{ app.request.server.get('META_FACEBOOK_NAME') }}">
+            <meta property="og:url" content="{{ app.request.uri }}">
+            <meta property="og:title" content="{{ app.request.server.get('META_FACEBOOK_TITLE') }}">
+            <meta property="og:description" content="{{ app.request.server.get('META_FACEBOOK_DESCRIPTION') }}">
+            <meta property="og:locale" content="fr_FR"/>
+        {% endblock %}
+
+        {% block twittermeta %}
+            <!-- Twitter meta tags -->
+            <meta property="twitter:url" content="{{ app.request.uri }}">
+            <meta name="twitter:title" content="{{ app.request.server.get('META_TWITTER_TITLE') }}">
+            <meta name="twitter:description" content="{{ app.request.server.get('META_TWITTER_DESCRIPTION') }}">
+        {% endblock %}
+
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
