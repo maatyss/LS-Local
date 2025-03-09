@@ -63,6 +63,11 @@ class DashboardController extends AbstractDashboardController
                 ->setQueryParameter('filters[region][comparison]', '=')
                 ->setQueryParameter('filters[region][value]', 'south')
                 ->setAction( Crud::PAGE_INDEX),
+        yield  MenuItem::linkToCrud('Marker type', 'fa fa-thumbtack', User::class)
+            ->setController(MarkerTypeCrudController::class)
+            ->setAction( Crud::PAGE_INDEX)
+        ;
+
         ]);
 
     }
