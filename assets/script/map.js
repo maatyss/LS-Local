@@ -68,6 +68,7 @@ if(explanationShow && explanations && explanationShowPath) {
   explanationShow.addEventListener('click', () => {
     (explanationShowPath.getAttribute('d') !== arrowup)? explanationShowPath.setAttribute('d', arrowup) : explanationShowPath.setAttribute('d', arrowdown)
     explanations.classList.toggle('hidden')
+    explanations.classList.toggle('flex')
   })
   
 }
@@ -83,14 +84,18 @@ if (markers) {
 
     marker.style.top = posY + 'px'
     marker.style.left = posX + 'px'
+    marker.classList.add('visible')
+    marker.classList.remove('opacity-0')
     
     marker.addEventListener('mouseover', () => {
       let cardMarker = marker.querySelector('#cardMarker_'+marker.dataset.id)
       cardMarker.classList.remove('hidden')
+      cardMarker.classList.add('flex')
     })
     marker.addEventListener('mouseleave', () => {
       let cardMarker = marker.querySelector('#cardMarker_'+marker.dataset.id)
       cardMarker.classList.add('hidden')
+      cardMarker.classList.remove('flex')
     })
   })
   

@@ -21,13 +21,13 @@
 
 
 
-<div class="marker absolute flex flex-col gap-4 h-fit w-fit visible"
+<div class="marker absolute flex flex-col gap-4 h-fit w-fit opacity-0 transition ease-in duration-500"
      data-posx="{{ marker.posX }}" data-posy="{{ marker.posY }}"
      data-name="{{ marker.name }} " data-id="{{ marker.id }}">
 
     <i class="flex items-center justify-center text-lg fa-solid {{ markerIcon }}" style="color: {{ '#'~markerColor }}"></i>
 
-    <div id="cardMarker_{{ marker.id }}" class="hidden flex flex-col gap-4 bg-grey p-4 rounded-lg z-50">
+    <div id="cardMarker_{{ marker.id }}" class="hidden flex-col gap-4 bg-grey p-4 rounded-lg z-50">
         {% if marker.title or marker.name %}
             <div class="flex flex-col">
             {% if marker.title %}
