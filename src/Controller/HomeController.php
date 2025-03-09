@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Marker;
 use App\Form\MarkerFormType;
 use App\Repository\MarkerRepository;
+use App\Repository\MarkerTypeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,12 +24,16 @@ final class HomeController extends AbstractController
 
     #[IsGranted('ROLE_GROUPE_CJGN')]
     #[Route('/map', name: 'app_map')]
-    public function map(MarkerRepository $markerRepository): Response
+    public function map(MarkerRepository $markerRepository, MarkerTypeRepository $markerTypeRepository): Response
     {
+        $markerTypes = $markerTypeRepository->getAll();
+//        dd($markerTypes);
+
         $markerNorth = $markerRepository->getRegionMarkers('north');
         $markerSouth = $markerRepository->getRegionMarkers('south');
 
         return $this->render('map/map.html.twig', [
+            'markerTypes' => $markerTypes,
             'markersNorth' => $markerNorth,
             'markersSouth' => $markerSouth,
         ]);
@@ -56,8 +61,7 @@ final class HomeController extends AbstractController
             ->remove('creator');
         $form->handleRequest($request);
 
-//        Ajouter && $user a la condition quand user sera complétement implémenter
-        if ($form->isSubmitted() && $form->isValid()){
+        if ($form->isSubmitted() && $form->isValid() && $user){
 
             $marker->setName($form->get('name')->getData())
                 ->setTitle($form->get('title')->getData())

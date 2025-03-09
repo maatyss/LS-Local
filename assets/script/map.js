@@ -76,8 +76,10 @@ let markers = document.querySelectorAll('.marker')
 
 if (markers) {
   markers.forEach((marker) => {
-    let posX = Math.round(marker.parentElement.offsetWidth * marker.dataset.posx) - (marker.querySelector('svg').getBoundingClientRect().width/2)
-    let posY = Math.round(marker.parentElement.offsetHeight * marker.dataset.posy) - (marker.querySelector('svg').getBoundingClientRect().height)
+    let markerIcon = marker.querySelector('i')
+    
+    let posX = Math.round(marker.parentElement.offsetWidth * marker.dataset.posx) - (markerIcon.getBoundingClientRect().width/2)
+    let posY = Math.round(marker.parentElement.offsetHeight * marker.dataset.posy) - (markerIcon.getBoundingClientRect().height/2)
 
     marker.style.top = posY + 'px'
     marker.style.left = posX + 'px'

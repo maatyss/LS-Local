@@ -52,17 +52,24 @@ class DashboardController extends AbstractDashboardController
             ->setAction( Crud::PAGE_INDEX)
         ;
 
-        yield MenuItem::subMenu('Markers', 'fas fa-code')->setSubItems([
-            MenuItem::linkToCrud('Markers Nord', 'fa fa-tags', Marker::class)
-                ->setController(MarkerCrudController::class)
-                ->setQueryParameter('filters[region][comparison]', '=')
-                ->setQueryParameter('filters[region][value]', 'north')
-                ->setAction( Crud::PAGE_INDEX),
-            MenuItem::linkToCrud('Markers Sud', 'fa fa-tags', Marker::class)
-                ->setController(MarkerCrudController::class)
-                ->setQueryParameter('filters[region][comparison]', '=')
-                ->setQueryParameter('filters[region][value]', 'south')
-                ->setAction( Crud::PAGE_INDEX),
+        yield  MenuItem::linkToCrud('Marker type', 'fa fa-thumbtack', User::class)
+            ->setController(MarkerTypeCrudController::class)
+            ->setAction( Crud::PAGE_INDEX)
+        ;
+
+        yield MenuItem::subMenu('Markers', 'fas fa-map-location-dot')->setSubItems([
+            MenuItem::linkToCrud('Tous les Markers', 'fa fa-map-marker-alt', Marker::class)
+                ->setController(MarkerCrudController::class),
+//            MenuItem::linkToCrud('Markers Nord', 'fa fa-map-marker-alt', Marker::class)
+//                ->setController(MarkerCrudController::class)
+//                ->setQueryParameter('filters[region][comparison]', '=')
+//                ->setQueryParameter('filters[region][value]', 'north')
+//                ->setAction( Crud::PAGE_INDEX),
+//            MenuItem::linkToCrud('Markers Sud', 'fa fa-map-marker-alt', Marker::class)
+//                ->setController(MarkerCrudController::class)
+//                ->setQueryParameter('filters[region][comparison]', '=')
+//                ->setQueryParameter('filters[region][value]', 'south')
+//                ->setAction( Crud::PAGE_INDEX),
         ]);
 
     }

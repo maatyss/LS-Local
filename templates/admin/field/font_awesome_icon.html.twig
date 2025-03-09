@@ -1,0 +1,6 @@
+{% if field.value %}
+    <i class="fa-solid {{ field.value }}"></i>
+{% else %}
+    {# Optionnel : Affiche une icône par défaut ou un message si faCode est vide #}
+    <i class="fa-solid fa-question-circle"></i>
+{% endif %}

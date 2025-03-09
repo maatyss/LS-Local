@@ -1,16 +1,48 @@
+{% if marker.name %}
+    {% set markerName = marker.name|slugify %}
+    {% set foundMarkerType = null %}
+    {% for markerType in markerTypes %}
+        {% if markerType.name == markerName %}
+            {% set foundMarkerType = markerType %}
+        {% endif %}
+    {% endfor %}
+
+    {% if foundMarkerType %}
+        {% set markerColor = foundMarkerType.color %}
+        {% set markerIcon = foundMarkerType.faCode %}
+    {% else %}
+        {% set markerColor = 'FF4081' %}
+        {% set markerIcon = 'fa-map-pin' %}
+    {% endif %}
+{% else %}
+    {% set markerColor = 'FF4081' %}
+    {% set markerIcon = 'fa-map-pin' %}
+{% endif %}
+
+
+
 <div class="marker absolute flex flex-col gap-4 h-fit w-fit visible"
      data-posx="{{ marker.posX }}" data-posy="{{ marker.posY }}"
      data-name="{{ marker.name }} " data-id="{{ marker.id }}">
-    <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
-        <path fill="#FF4081" d="M16 144a144 144 0 1 1 288 0A144 144 0 1 1 16 144zM160 80c8.8 0 16-7.2 16-16s-7.2-16-16-16c-53 0-96 43-96 96c0 8.8 7.2 16 16 16s16-7.2 16-16c0-35.3 28.7-64 64-64zM128 480l0-162.9c10.4 1.9 21.1 2.9 32 2.9s21.6-1 32-2.9L192 480c0 17.7-14.3 32-32 32s-32-14.3-32-32z"></path>
-    </svg>
-    <div id="cardMarker_{{ marker.id }}" class="hidden flex flex-col gap-4 bg-grey p-4 rounded-lg">
-        <div class="flex flex-col">
-            <p class="text-xl font-medium">{{ marker.title }}</p>
-            <p class="text-xs">Type : {{ marker.name }}</p>
-        </div>
 
-        <p class="w-80 pl-4">{{ marker.comment }}</p>
+    <i class="flex items-center justify-center text-lg fa-solid {{ markerIcon }}" style="color: {{ '#'~markerColor }}"></i>
+
+    <div id="cardMarker_{{ marker.id }}" class="hidden flex flex-col gap-4 bg-grey p-4 rounded-lg z-50">
+        {% if marker.title or marker.name %}
+            <div class="flex flex-col">
+            {% if marker.title %}
+                <p class="text-xl font-medium">{{ marker.title }}</p>
+
+            {% endif %}
+            {% if marker.name %}
+                <p class="text-xs">Type : {{ marker.name }}</p>
+            {% endif %}
+            </div>
+        {% endif %}
+
+        {% if marker.comment %}
+            <p class="w-80 pl-4">{{ marker.comment }}</p>
+        {% endif %}
 
         {% if marker.image %}
             <img class="w-80 h-auto" src="{{ marker.image }}" alt="Image marker_{{ marker.id }}">
