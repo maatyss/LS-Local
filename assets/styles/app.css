@@ -19,3 +19,12 @@ body::-webkit-scrollbar {
 h1,h2,h3,h4,h5,h6{
     font-family: Lato, sans-serif;
 }
+
+.lazy-load {
+    transition: opacity 0.5s ease-in-out;
+    opacity: 0;
+}
+
+.lazy-load.loaded {
+    opacity: 1;
+}

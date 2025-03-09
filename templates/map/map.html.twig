@@ -36,8 +36,8 @@
         </div>
 
 
-        <div class="relative">
-            <img class="map" src="{{ asset('base/img/map_ls_nord.png') }}" data-region="north" alt="">
+        <div class="relative w-full">
+            <img class="map lazyLoad w-full" src="{{ asset('base/img/map_ls_nord_sd.gif') }}" data-src="{{ asset('base/img/map_ls_nord.png') }}" data-region="north" alt="Partie nord de LS" loading="lazy">
             <ul class="markersList absolute w-full h-full top-0 left-0 invisible">
                 {% for marker in markersNorth %}
                     <li class="w-full h-full invisible">
@@ -49,7 +49,7 @@
         </div>
         
         <div class="relative">
-            <img class="map" src="{{ asset('base/img/map_ls_sud.png') }}" data-region="south" alt="">
+            <img class="map lazyLoad w-full" src="{{ asset('base/img/map_ls_sud_sd.gif') }}" data-src="{{ asset('base/img/map_ls_sud.png') }}" data-region="sud" alt="Partie sud de LS" loading="lazy">
             <ul class="markersList absolute w-full h-full top-0 left-0 invisible">
                 {% for marker in markersSouth %}
                     <li class="w-full h-full invisible">
