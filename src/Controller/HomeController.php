@@ -61,8 +61,7 @@ final class HomeController extends AbstractController
             ->remove('creator');
         $form->handleRequest($request);
 
-//        Ajouter && $user a la condition quand user sera complétement implémenter
-        if ($form->isSubmitted() && $form->isValid()){
+        if ($form->isSubmitted() && $form->isValid() && $user){
 
             $marker->setName($form->get('name')->getData())
                 ->setTitle($form->get('title')->getData())
